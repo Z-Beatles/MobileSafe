@@ -39,6 +39,7 @@ public class ContactAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = null;
 		if (convertView == null) {
+			// convertView表示的是item被划出屏幕的view
 			convertView = View.inflate(context,
 					R.layout.item_list_contact_select, null);
 			holder = new ViewHolder();

@@ -37,7 +37,7 @@ public class BlackNumberDao {
 		// 插入成功返回这条记录的ID，否则返回-1
 		ContentValues values = new ContentValues();
 		if (blackContactInfo.phoneNumber.startsWith("+86")) {
-			// 截取+86后的字符串
+			// substring()方法截取到+86后的字符串
 			blackContactInfo.phoneNumber = blackContactInfo.phoneNumber
 					.substring(3, blackContactInfo.phoneNumber.length());
 		}
@@ -46,7 +46,7 @@ public class BlackNumberDao {
 		values.put("mode", blackContactInfo.mode);
 		long rowid = db.insert("blacknumber", null, values);
 		if (rowid == -1) {
-			return false;
+			return false;// 数据插入不成功
 		} else {
 			return true;
 		}
@@ -56,7 +56,7 @@ public class BlackNumberDao {
 	 * 删除数据
 	 * 
 	 * @param blackContactInfo
-	 * @return
+	 * @return 删除失败返回 0
 	 */
 	public boolean delete(BlackContactInfo blackContactInfo) {
 		SQLiteDatabase db = blackNumberOpenHelper.getWritableDatabase();
@@ -88,16 +88,16 @@ public class BlackNumberDao {
 	/**
 	 * 分页查询数据库的记录
 	 * 
-	 * @param pagenumber 页码，从0开始
-	 * @param pagesize 页面大小
+	 * @param pagenumber-页码，从0开始
+	 * @param pagesize-页面大小
 	 * @return mBlackContactInfos(ArrayList<BlackContactInfo>类型)
 	 */
 	public List<BlackContactInfo> getPageBlackNumber(int pagenumber,
 			int pagesize) {
 		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
 		/*
-		 * rawQuery()的第二个参数为占位符，如果没有，可以设置为null
-		 * limit 6 offset 12(2*6) ------  表示从第12条开始读取6条
+		 * rawQuery()的第二个参数为占位符，如果没有，可以设置为null 
+		 * limit 6 offset 12(2*6) --- 表示从第12条开始读取6条 
 		 * 也可以表示为 limit 12,6
 		 */
 		Cursor cursor = db.rawQuery(
@@ -119,5 +119,44 @@ public class BlackNumberDao {
 		db.close();
 		SystemClock.sleep(30);
 		return mBlackContactInfos;
+	}
+
+	/**
+	 * 判断黑名单中是否存在该号码
+	 * 
+	 * @param number
+	 * @return
+	 */
+	public boolean isNumberExist(String number) {
+		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
+		Cursor cursor = db.query("blacknumber", null, "number=?",
+				new String[] { number }, null, null, null);
+		if (cursor.moveToNext()) {
+			cursor.close();
+			db.close();
+			return true;
+		}
+		cursor.close();
+		db.close();
+		return false;
+	}
+
+	/**
+	 * 根据号码查询黑名单信息
+	 * 
+	 * @param number
+	 * @return
+	 */
+	public int getBlackContactMode(String number) {
+		SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
+		Cursor cursor = db.query("blacknumber", new String[] { "mode" },
+				"number=?", new String[] { number }, null, null, null);
+		int mode = 0;
+		if (cursor.moveToNext()) {
+			mode = cursor.getInt(cursor.getColumnIndex("mode"));
+		}
+		cursor.close();
+		db.close();
+		return mode;
 	}
 }
