@@ -1,6 +1,5 @@
 package cn.waynechu.mobilesafe.chapter01;
 
-
 import cn.waynechu.mobilesafe.R;
 import cn.waynechu.mobilesafe.chapter01.utils.MyUtils;
 import cn.waynechu.mobilesafe.chapter01.utils.VersionUpdateUtils;
@@ -9,10 +8,10 @@ import android.app.Activity;
 import android.view.Window;
 import android.widget.TextView;
 
+/**
+ * 欢迎界面
+ */
 public class SplashActivity extends Activity {
-    /**
-     * 欢迎界面
-     */
     // 应用版本号
     private String mVersion;
     // 本地版本号
@@ -24,9 +23,9 @@ public class SplashActivity extends Activity {
         // 设置该Activity没有标题栏，在加载布局之前调用
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
-        //获取版本号
+        // 获取版本号
         mVersion = MyUtils.getVersion(getApplicationContext());
-        //初始化控件（版本信息）
+        // 初始化控件（版本信息）
         initView();
         final VersionUpdateUtils updateUtils = new VersionUpdateUtils(mVersion,
                 SplashActivity.this);

@@ -26,8 +26,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.widget.Toast;
 
+/**
+ * 版本更新工具类
+ * 
+ * @author waynechu
+ * 
+ */
 public class VersionUpdateUtils {
 
     private static final int MESSAGE_NET_EEOR = 101;
@@ -38,7 +45,7 @@ public class VersionUpdateUtils {
 
     // 创建消息传递者用于更新UI
     private Handler handler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
             case MESSAGE_IO_EEOR:
                 Toast.makeText(context, "IO异常", Toast.LENGTH_SHORT).show();
@@ -122,7 +129,7 @@ public class VersionUpdateUtils {
      * 
      * @param versionEntity
      */
-    protected void showUpdateDialog(final VersionEntity versionEntity) {
+    private void showUpdateDialog(final VersionEntity versionEntity) {
         // 创建 dialog
         AlertDialog.Builder builder = new Builder(context);
         builder.setTitle("检查到新版本：" + versionEntity.versioncode);
@@ -154,7 +161,7 @@ public class VersionUpdateUtils {
     /**
      * 初始化下载进度条对话框
      */
-    protected void initProgressDialog() {
+    private void initProgressDialog() {
         mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setMessage("准备下载");
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -166,7 +173,7 @@ public class VersionUpdateUtils {
      * 
      * @param apkurl
      */
-    protected void downloadNewApk(String apkurl) {
+    private void downloadNewApk(String apkurl) {
         RequestParams params = new RequestParams(apkurl);
         // 下载路径为 /mnt/sdcard/mobilesafe.apk
         params.setSaveFilePath(Environment.getExternalStorageDirectory()
@@ -217,7 +224,7 @@ public class VersionUpdateUtils {
         });
     }
 
-    protected void enterHome() {
+    private void enterHome() {
         handler.sendEmptyMessageDelayed(MESSAGE_ENTERHOME, 1000);
     }
 }

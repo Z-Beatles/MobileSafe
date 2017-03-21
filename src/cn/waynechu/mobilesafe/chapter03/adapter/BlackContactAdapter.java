@@ -13,21 +13,35 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 用于填充联系人信息的数据适配器
+ * 
+ * @author waynechu
+ * 
+ */
 public class BlackContactAdapter extends BaseAdapter {
+
     private List<BlackContactInfo> contactInfos;
     private Context context;
     private BlackNumberDao dao;
-    private BlackContactCallBack callBack;
+    private BlackConactCallBack callBack;
 
+    public void setCallBack(BlackConactCallBack callBack) {
+        this.callBack = callBack;
+    }
+
+    /**
+     * 构造方法，List<BlackContactInfo>是从主界面传递的黑名单数据集合
+     * 
+     * @param systemContacts
+     * @param context
+     */
     public BlackContactAdapter(List<BlackContactInfo> systemContacts,
             Context context) {
+        super();
         this.contactInfos = systemContacts;
         this.context = context;
         dao = new BlackNumberDao(context);
-    }
-
-    public void setCallBack(BlackContactCallBack callBack) {
-        this.callBack = callBack;
     }
 
     @Override
@@ -77,32 +91,32 @@ public class BlackContactAdapter extends BaseAdapter {
         holder.mDeleteView.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View v) {
+                // 点击删除，删除数据库数据后再调用Adapter的notifyDataSetChanged()方法刷新界面
                 boolean datele = dao.delete(contactInfos.get(position));
                 if (datele) {
                     contactInfos.remove(contactInfos.get(position));
                     BlackContactAdapter.this.notifyDataSetChanged();
-                    // 如果数据库中没有数据，则执行回调函数
+                    // 如果删除的数据是最后一条，则执行回调函数
                     if (dao.getTotalNumber() == 0) {
                         callBack.DataSizeChanged();
                     }
                 } else {
-                    Toast.makeText(context, "删除失败！！", Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(context, "删除失败！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         return convertView;
     }
 
-    static class ViewHolder {
+    class ViewHolder {
         TextView mNameTV;
         TextView mModeTV;
         View mContactImgv;
         View mDeleteView;
     }
 
-    public interface BlackContactCallBack {
+    public interface BlackConactCallBack {
         void DataSizeChanged();
     }
 }

@@ -1,5 +1,6 @@
 package cn.waynechu.mobilesafe.chapter01.entity;
 
+/** 版本信息实体类 */
 public class VersionEntity {
     // 服务器版本号
     public String versioncode;
