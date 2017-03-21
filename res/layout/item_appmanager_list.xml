@@ -65,7 +65,7 @@
         <TextView
             android:id="@+id/tv_uninstall_app"
             style="@style/tvyellow14sp"
-            android:drawableTop="@drawable/phoneicon_yellow_n"
+            android:drawableTop="@drawable/deleteicon_yellow_n"
             android:text="卸载" />
 
         <View
@@ -76,7 +76,7 @@
         <TextView
             android:id="@+id/tv_share_app"
             style="@style/tvyellow14sp"
-            android:drawableTop="@drawable/phoneicon_yellow_n"
+            android:drawableTop="@drawable/shareicon_yellow_n"
             android:text="分享" />
 
         <View
@@ -87,7 +87,7 @@
         <TextView
             android:id="@+id/tv_setting_app"
             style="@style/tvyellow14sp"
-            android:drawableTop="@drawable/phoneicon_yellow_n"
+            android:drawableTop="@drawable/settingicon_yellow_n"
             android:text="设置" />
     </LinearLayout>
 

@@ -31,7 +31,7 @@ public class BlackNumberDao {
 	 * @return
 	 */
 	public boolean add(BlackContactInfo blackContactInfo) {
-		// 创建一个SQLite数据库
+		// 创建一个SQLite数据库对象
 		SQLiteDatabase db = blackNumberOpenHelper.getWritableDatabase();
 		// ContentValues和HashTable类似都是一种储存机制，最大的区别在于ContentValues只能储存基本数据类型，而HashTable却可以储存对象。
 		// 插入成功返回这条记录的ID，否则返回-1

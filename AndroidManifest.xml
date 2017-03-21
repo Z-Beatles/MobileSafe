@@ -100,6 +100,11 @@
             android:name="cn.waynechu.mobilesafe.chapter03.AddBlackNumberActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 软件管家 -->
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter04.AppManagerActivity"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- 手机卡更换的receiver， 并且优先级设置为最高 -->
         <receiver android:name="cn.waynechu.mobilesafe.chapter02.receiver.SmsLostFindReceiver" >

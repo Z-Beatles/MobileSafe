@@ -3,7 +3,8 @@ package cn.waynechu.mobilesafe.chapter04.utils;
 import android.content.Context;
 
 /**
- * 用于dp和px之间的转换的工具类
+ * 用于dip和px之间转换的工具类
+ * 在xUtil框架里也有实现该方法
  * 
  * @author waynechu
  * 

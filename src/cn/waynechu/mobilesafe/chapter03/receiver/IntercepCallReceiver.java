@@ -116,7 +116,7 @@ public class IntercepCallReceiver extends BroadcastReceiver {
      */
     private void endcall(Context context) {
         try {
-            Class mclass = context.getClassLoader().loadClass(
+            Class<?> mclass = context.getClassLoader().loadClass(
                     "android.os.ServiceManager");
             Method method = mclass
                     .getDeclaredMethod("getService", String.class);

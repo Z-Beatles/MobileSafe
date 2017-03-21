@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * 显示黑名单信息界面
+ * 显示黑名单信息逻辑
  * 
  * @author waynechu
  * 
@@ -135,6 +135,9 @@ public class SecurityPhoneActivity extends Activity implements OnClickListener {
     protected void onResume() {
         //当Activity回到前台时调用,如果数据库总条目发生变化，则清空黑名单中的数据并重新添加。
         super.onResume();
+        //System.out.print("totalNumber:"+totalNumber);
+        //int daototal=dao.getTotalNumber();
+        //System.out.print("dao.getTotalNumber()"+daototal);
         if (totalNumber != dao.getTotalNumber()) {
             // 数据发生变化
             if (dao.getTotalNumber() > 0) {
@@ -152,7 +155,6 @@ public class SecurityPhoneActivity extends Activity implements OnClickListener {
                 adapter.notifyDataSetChanged();
             }
         }
-
     }
 
     @Override

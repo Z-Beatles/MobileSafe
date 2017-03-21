@@ -1,7 +1,5 @@
 package cn.waynechu.mobilesafe.chapter04.utils;
 
-import java.util.concurrent.TimeoutException;
-
 import cn.waynechu.mobilesafe.chapter04.entity.AppInfo;
 import android.content.Context;
 import android.content.Intent;
@@ -23,12 +21,13 @@ public class EngineUtils {
 	 * @param context
 	 * @param appinfo
 	 */
-	public static void shareApplication(Context context, AppInfo appinfo) {
-		Intent intent = new Intent("anfroid.intent.action.SEND");
+	public static void shareApplication(Context context,AppInfo appInfo) {
+		Intent intent = new Intent("android.intent.action.SEND");
 		intent.addCategory("android.intent.category.DEFAULT");
 		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_TEXT, "推荐您使用手机安全卫士，全方位保护您的手机安全！"
-				+ "下载路径：http://www.topblog.top/download/mobliesafe.apk");
+		intent.putExtra(Intent.EXTRA_TEXT,
+				"推荐您使用一款软件，名称叫：" + appInfo.appName
+						+ "下载路径：https://www.topblog.top/download/mobilesafe");
 		context.startActivity(intent);
 	}
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 /**
  * 广播接收者用于拦截短信
@@ -24,8 +25,10 @@ public class InterceptSmsReceiver extends BroadcastReceiver {
 				"BlackNumStatus", true);
 		if (!BlackNumStatus) {
 			// 黑名单拦截关闭
+			Log.i("拦截短信", "黑名单拦截关闭");
 			return;
 		}
+		Log.i("拦截短信", "黑名单拦截已经打开");
 		// 如果是黑名单，则终止广播
 		BlackNumberDao dao = new BlackNumberDao(context);
 		// 用于获取接收到的信息
@@ -33,7 +36,7 @@ public class InterceptSmsReceiver extends BroadcastReceiver {
 		for (Object obj : objs) {
 			SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) obj);
 			String sender = smsMessage.getOriginatingAddress();
-			String body = smsMessage.getMessageBody();
+			//String body = smsMessage.getMessageBody();
 			if (sender.startsWith("+86")) {
 				sender = sender.substring(3, sender.length());
 			}

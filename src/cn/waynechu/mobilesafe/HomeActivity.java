@@ -9,6 +9,7 @@ import cn.waynechu.mobilesafe.chapter02.dialog.SetUpPasswordDialog;
 import cn.waynechu.mobilesafe.chapter02.receiver.MyDeviceAdminReceiver;
 import cn.waynechu.mobilesafe.chapter02.utils.MD5Utils;
 import cn.waynechu.mobilesafe.chapter03.SecurityPhoneActivity;
+import cn.waynechu.mobilesafe.chapter04.AppManagerActivity;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -69,7 +70,7 @@ public class HomeActivity extends Activity {
                     startActivity(SecurityPhoneActivity.class);
                     break;
                 case 2:// 软件管家
-
+                	startActivity(AppManagerActivity.class);
                     break;
                 case 3:// 病毒查杀
 

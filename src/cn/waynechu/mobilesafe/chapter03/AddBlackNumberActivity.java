@@ -96,7 +96,6 @@ public class AddBlackNumberActivity extends Activity implements OnClickListener 
 		case R.id.add_fromcontact_btn:
 			startActivityForResult(
 			        //调用第二章的联系人选择界面
-			        
 					new Intent(this, ContactSelectActivity.class),
 					Toast.LENGTH_SHORT);
 			break;

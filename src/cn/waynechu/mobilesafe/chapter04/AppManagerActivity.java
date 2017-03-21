@@ -2,7 +2,6 @@ package cn.waynechu.mobilesafe.chapter04;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.waynechu.mobilesafe.R;
 import cn.waynechu.mobilesafe.chapter04.adapter.AppManagerAdapter;
 import cn.waynechu.mobilesafe.chapter04.entity.AppInfo;
@@ -29,9 +28,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class AppManagerActivity extends Activity implements OnClickListener {
+	/** 手机剩余内存的TextView */
 	private TextView mPhoneMemoryTV;
-	private UninstallRecesiver receiver;
+	/** SD卡剩余内存TextView */
 	private TextView mSDMemoryTV;
+	/** 接收应用程序卸载成功的广播 */
+	private UninstallRecesiver receiver;
+
 	private TextView mAppNumTV;
 	private ListView mListView;
 	private AppManagerAdapter adapter;
@@ -60,6 +63,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_app_manager);
+		// 注册广播，用于接收软件卸载成功
 		receiver = new UninstallRecesiver();
 		IntentFilter intentFilter = new IntentFilter(
 				Intent.ACTION_PACKAGE_REMOVED);
@@ -73,13 +77,14 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 		findViewById(R.id.rl_titlebar).setBackgroundColor(
 				getResources().getColor(R.color.bright_yellow));
 		ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
+		((TextView) findViewById(R.id.tv_title)).setText("软件管家");
 		mLeftImgv.setOnClickListener(this);
 		mLeftImgv.setImageResource(R.drawable.back);
 		mPhoneMemoryTV = (TextView) findViewById(R.id.tv_phonememory_appmanager);
 		mSDMemoryTV = (TextView) findViewById(R.id.tv_sdmemory_appmanager);
 		mAppNumTV = (TextView) findViewById(R.id.tv_appnumber);
 		mListView = (ListView) findViewById(R.id.lv_appmanager);
-
+		// 取得手机和SD卡的剩余内存
 		getMemoryFromPhone();
 		initData();
 		initListener();
@@ -121,19 +126,19 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			@Override
 			public void onScrollStateChanged(AbsListView arg0, int arg1) {
 			}
-
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int arg2, int arg3) {
 				if (firstVisibleItem >= userAppInfos.size() + 1) {
 					mAppNumTV.setText("系统程序：" + systemAppInfos.size() + "个");
 				} else {
-					mAppNumTV.setTag("用户程序" + userAppInfos.size() + "个");
+					mAppNumTV.setText("用户程序" + userAppInfos.size() + "个");
 				}
 			}
 		});
 	}
 
+	/** 清除数据并重新加载应用列表 */
 	public void initData() {
 		appInfos = new ArrayList<AppInfo>();
 		new Thread() {
@@ -155,11 +160,12 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 		}.start();
 	}
 
+	/** 获取手机和SD卡内存 */
 	private void getMemoryFromPhone() {
 		long avail_sd = Environment.getExternalStorageDirectory()
 				.getFreeSpace();
 		long avail_rom = Environment.getDataDirectory().getFreeSpace();
-
+		// 将long型格式化为String型
 		String str_avail_sd = Formatter.formatFileSize(this, avail_sd);
 		String str_avail_rom = Formatter.formatFileSize(this, avail_rom);
 		mPhoneMemoryTV.setText("剩余手机内存：" + str_avail_rom);
@@ -168,7 +174,6 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-
 		switch (v.getId()) {
 		case R.id.imgv_leftbtn:
 			finish();
@@ -177,7 +182,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * 接受应用程序卸载的广播
+	 * 接收应用程序卸载的广播
 	 * 
 	 * @author waynechu
 	 * 
