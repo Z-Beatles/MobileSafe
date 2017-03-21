@@ -10,13 +10,13 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Environment;
 
+/**
+ * 获取应用版本号
+ * 
+ * @param context
+ * @return versionName-版本号
+ */
 public class MyUtils {
-    /**
-     * 获取应用版本号
-     * 
-     * @param context
-     * @return versionName
-     */
     public static String getVersion(Context context) {
         // PackageManager 可以获取清单文件中的所有信息
         PackageManager manager = context.getPackageManager();
