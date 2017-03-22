@@ -67,7 +67,6 @@ public class EngineUtils {
 	 * @param context
 	 * @param appInfo
 	 */
-
 	public static void uninstallApplication(Context context, AppInfo appInfo) {
 		if (appInfo.isUserApp) {
 			Intent intent = new Intent();
