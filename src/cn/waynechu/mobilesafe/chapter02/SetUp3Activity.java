@@ -70,12 +70,7 @@ public class SetUp3Activity extends BaseSetUpActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             String phone = data.getStringExtra("phone");
-            // 匹配所有非数字字符再使用replaceAll()方法去掉
-            String regEx = "[^0-9]";
-            Pattern pattern = Pattern.compile(regEx);
-            Matcher m = pattern.matcher(phone);
-            String safePhone = m.replaceAll("");
-            mInputPhone.setText(safePhone);
+            mInputPhone.setText(phone);
         }
     }
 }
