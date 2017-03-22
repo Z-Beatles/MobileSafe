@@ -32,6 +32,7 @@ public class SmsLostFindReceiver extends BroadcastReceiver {
                 SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) obj);
                 String sender = smsMessage.getOriginatingAddress();
                 String body = smsMessage.getMessageBody();
+                
                 String safephone = sharedPreferences.getString("safephone",
                         null);
                 // 如果该短信是安全号码发送的
