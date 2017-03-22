@@ -12,7 +12,7 @@ import android.graphics.drawable.Drawable;
 import cn.waynechu.mobilesafe.chapter04.entity.AppInfo;
 
 /**
- * 获取手机里的所有应用程序
+ * 获取手机里的所有应用程序的信息
  * 
  * @author waynechu
  * 
@@ -21,7 +21,7 @@ public class AppInfoParser {
 	public static List<AppInfo> getAppInfos(Context context) {
 		// 得到包管理器
 		PackageManager pm = context.getPackageManager();
-		// 获取到已安装的引用程序的包信息
+		// 获取到已安装的应用程序的包信息
 		List<PackageInfo> packInfos = pm.getInstalledPackages(0);
 		// 用于储存获取到的应用程序信息
 		List<AppInfo> appinfos = new ArrayList<AppInfo>();
