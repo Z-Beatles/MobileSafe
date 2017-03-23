@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 /**
  * 应用程序信息实体类
  * 
- * @author hp
+ * @author waynechu
  * 
  */
 public class AppInfo {

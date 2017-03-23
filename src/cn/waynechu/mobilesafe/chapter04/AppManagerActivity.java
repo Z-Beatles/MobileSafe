@@ -101,14 +101,14 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 						public void run() {
 							AppInfo mappInfo = (AppInfo) adapter
 									.getItem(position);
-							boolean flag = mappInfo.isSelected;
-							for (AppInfo appInfo : userAppInfos) {
-								appInfo.isSelected = false;
-							}
-							for (AppInfo appInfo : systemAppInfos) {
-								appInfo.isSelected = false;
-							}
 							if (mappInfo != null) {
+								boolean flag = mappInfo.isSelected;
+								for (AppInfo appInfo : userAppInfos) {
+									appInfo.isSelected = false;
+								}
+								for (AppInfo appInfo : systemAppInfos) {
+									appInfo.isSelected = false;
+								}
 								if (flag) {
 									mappInfo.isSelected = false;
 								} else {
@@ -126,13 +126,14 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			@Override
 			public void onScrollStateChanged(AbsListView arg0, int arg1) {
 			}
+
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int arg2, int arg3) {
 				if (firstVisibleItem >= userAppInfos.size() + 1) {
 					mAppNumTV.setText("系统程序：" + systemAppInfos.size() + "个");
 				} else {
-					mAppNumTV.setText("用户程序" + userAppInfos.size() + "个");
+					mAppNumTV.setText("用户程序：" + userAppInfos.size() + "个");
 				}
 			}
 		});
