@@ -101,14 +101,14 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 						public void run() {
 							AppInfo mappInfo = (AppInfo) adapter
 									.getItem(position);
-							boolean flag = mappInfo.isSelected;
-							for (AppInfo appInfo : userAppInfos) {
-								appInfo.isSelected = false;
-							}
-							for (AppInfo appInfo : systemAppInfos) {
-								appInfo.isSelected = false;
-							}
 							if (mappInfo != null) {
+								boolean flag = mappInfo.isSelected;
+								for (AppInfo appInfo : userAppInfos) {
+									appInfo.isSelected = false;
+								}
+								for (AppInfo appInfo : systemAppInfos) {
+									appInfo.isSelected = false;
+								}
 								if (flag) {
 									mappInfo.isSelected = false;
 								} else {
