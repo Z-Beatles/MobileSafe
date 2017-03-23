@@ -126,13 +126,14 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			@Override
 			public void onScrollStateChanged(AbsListView arg0, int arg1) {
 			}
+
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int arg2, int arg3) {
 				if (firstVisibleItem >= userAppInfos.size() + 1) {
 					mAppNumTV.setText("系统程序：" + systemAppInfos.size() + "个");
 				} else {
-					mAppNumTV.setText("用户程序" + userAppInfos.size() + "个");
+					mAppNumTV.setText("用户程序：" + userAppInfos.size() + "个");
 				}
 			}
 		});

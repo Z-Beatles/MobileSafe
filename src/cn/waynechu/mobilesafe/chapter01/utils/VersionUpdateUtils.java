@@ -41,7 +41,8 @@ public class VersionUpdateUtils {
     private static final int MESSAGE_IO_EEOR = 102;
     private static final int MESSAGE_JSON_EEOR = 103;
     private static final int MESSAGE_SHOEW_DIALOG = 104;
-    protected static final int MESSAGE_ENTERHOME = 105;
+    protected static final int MESSAGE_VERSION_RIGHT=105;
+    protected static final int MESSAGE_ENTERHOME = 106;
 
     // 创建消息传递者用于更新UI
     private Handler handler = new Handler() {
@@ -62,6 +63,10 @@ public class VersionUpdateUtils {
             case MESSAGE_SHOEW_DIALOG:
                 showUpdateDialog(versionEntity);
                 break;
+            case MESSAGE_VERSION_RIGHT:
+                Toast.makeText(context, "当前版本为最新版本！", Toast.LENGTH_SHORT).show();
+                enterHome();
+                break;
             case MESSAGE_ENTERHOME:
                 Intent intent = new Intent(context, HomeActivity.class);
                 context.startActivity(intent);
@@ -76,8 +81,6 @@ public class VersionUpdateUtils {
     private VersionEntity versionEntity;
     private ProgressDialog mProgressDialog;
     private String url = "http://www.topblog.top/download/updateinfo.html";
-
-    // private String url="http://192.168.2.62:8080/updateinfo.html";
 
     public VersionUpdateUtils(String Version, Activity activity) {
         mVersion = Version;
@@ -110,6 +113,8 @@ public class VersionUpdateUtils {
                 versionEntity.apkurl = apkurl;
                 if (!mVersion.equals(versionEntity.versioncode)) {
                     handler.sendEmptyMessage(MESSAGE_SHOEW_DIALOG);
+                }else{
+                	handler.sendEmptyMessage(MESSAGE_VERSION_RIGHT);
                 }
             }
         } catch (ClientProtocolException e) {

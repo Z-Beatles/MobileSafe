@@ -51,7 +51,7 @@ public class App extends Application {
 				if (!TextUtils.isEmpty(safenumber)) {
 					SmsManager smsManager = SmsManager.getDefault();
 					smsManager.sendTextMessage(safenumber, null,
-							"您亲友的手机SIM卡已被更换！", null, null);
+							"您亲友的手机SIM卡已被更换！原始号码："+bindsim+"现在号码："+realsim, null, null);
 				}
 			}
 		}

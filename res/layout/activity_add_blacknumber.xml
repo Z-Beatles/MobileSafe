@@ -48,8 +48,7 @@
             android:checked="true"
             android:paddingLeft="40dp"
             android:text="电话拦截"
-            android:textColor="@color/bright_purple"
-            android:textScaleX="1.1" />
+            android:textColor="@color/bright_purple"/>
 
         <CheckBox
             android:id="@+id/cb_blacknumber_sms"
@@ -61,7 +60,6 @@
             android:paddingLeft="40dp"
             android:text="短信拦截"
             android:textColor="@color/bright_purple"
-            android:textScaleX="1.1"
             android:textSize="16sp" />
     </LinearLayout>
 

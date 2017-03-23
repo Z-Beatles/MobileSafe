@@ -51,7 +51,7 @@ public class SetUp2Activity extends BaseSetUpActivity implements
 
 	@Override
 	public void showNext() {
-//		// 测试机无法绑定成功，先取消帮卡功能
+//		// 虚拟机无法绑定成功，先取消帮卡功能
 //		if (!isBind()) {
 //			Toast.makeText(this, "您还没有绑定SIM卡！", Toast.LENGTH_SHORT).show();
 //			return;

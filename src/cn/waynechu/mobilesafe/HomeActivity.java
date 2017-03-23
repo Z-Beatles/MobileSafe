@@ -108,7 +108,7 @@ public class HomeActivity extends Activity {
             intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
                     componentName);
             intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                    "获取超级管理员权限，用于远程锁屏和清除数据");
+                    "手机卫士提醒您：远程锁屏、重置锁屏密码以及远程清除数据的功能需要激活此设备管理器。否则以上功能将无法正常使用！");
             startActivity(intent);
         }
     }

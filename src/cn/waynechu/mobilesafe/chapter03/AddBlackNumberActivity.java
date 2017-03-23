@@ -1,8 +1,5 @@
 package cn.waynechu.mobilesafe.chapter03;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import cn.waynechu.mobilesafe.R;
 import cn.waynechu.mobilesafe.chapter02.ContactSelectActivity;
 import cn.waynechu.mobilesafe.chapter03.db.dao.BlackNumberDao;
@@ -88,14 +85,15 @@ public class AddBlackNumberActivity extends Activity implements OnClickListener 
 				if (!dao.isNumberExist(blackContactInfo.phoneNumber)) {
 					dao.add(blackContactInfo);
 				} else {
-					Toast.makeText(this, "该号码已经被添加至黑名单", Toast.LENGTH_SHORT).show();
+					Toast.makeText(this, "该号码已经被添加至黑名单", Toast.LENGTH_SHORT)
+							.show();
 				}
 				finish();
 			}
 			break;
 		case R.id.add_fromcontact_btn:
 			startActivityForResult(
-			        //调用第二章的联系人选择界面
+					// 调用第二章的联系人选择界面
 					new Intent(this, ContactSelectActivity.class),
 					Toast.LENGTH_SHORT);
 			break;
@@ -105,17 +103,13 @@ public class AddBlackNumberActivity extends Activity implements OnClickListener 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (data != null) {
-			String phone = data.getStringExtra("phone");
-			String name = data.getStringExtra("name");
-			// 匹配所有非数字字符再使用replaceAll()方法去掉
-			String regEx = "[^0-9]";
-			Pattern pattern = Pattern.compile(regEx);
-			Matcher m = pattern.matcher(phone);
-			String safePhone = m.replaceAll("");
-			mNumET.setText(safePhone);
-			mNameET.setText(name);
+		// 获取选中的联系人信息并且截取电话号码
+		String phone = data.getStringExtra("phone");
+		String name = data.getStringExtra("name");
+		if (phone.startsWith("+86")) {
+			phone = phone.substring(3, phone.length());
 		}
+		mNameET.setText(name);
+		mNumET.setText(phone);
 	}
-
 }

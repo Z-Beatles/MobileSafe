@@ -117,10 +117,9 @@
             android:name="cn.waynechu.mobilesafe.chapter02.service.GPSLocationService"
             android:persistent="true" >
         </service>
-        <!-- 设备超级管理员广播接收者，引用XML策略声明sample_device_admin_description -->
+        <!-- 设备超级管理员广播接收者，引用XML策略声明 @xml/device_admin_sample -->
         <receiver
             android:name="cn.waynechu.mobilesafe.chapter02.receiver.MyDeviceAdminReceiver"
-            android:description="@string/sample_device_admin_description"
             android:label="@string/sample_device_admin"
             android:permission="android.permission.BIND_DEVICE_ADMIN" >
             <meta-data

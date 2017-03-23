@@ -45,17 +45,18 @@ public class AppManagerAdapter extends BaseAdapter {
 	@Override
 	public Object getItem(int position) {
 		if (position == 0) {
-			// 第0个位置显示的是用户程序个数的标签
+			// 第0个位置显示的是用户程序个数的Item
 			return null;
 		} else if (position == (UserAppInfos.size() + 1)) {
+			// 第UserAppInfos.size() + 1个位置显示的是系统程序个数的Item
 			return null;
 		}
 		AppInfo appInfo;
 		if (position < (UserAppInfos.size() + 1)) {
-			// 用户程序
+			// 用户程序，多了一个TextView标签，位置-1
 			appInfo = UserAppInfos.get(position - 1);
-			// 多了一个TextView标签，位置-1
 		} else {
+			// 系统程序，多了两个TextView标签，位置-2
 			int location = position - UserAppInfos.size() - 2;
 			appInfo = SystemAppInfos.get(location);
 		}
@@ -83,6 +84,7 @@ public class AppManagerAdapter extends BaseAdapter {
 		// 获取到当前App的对象
 		AppInfo appInfo;
 		if (position < (UserAppInfos.size() + 1)) {
+			// 用户程序，position 0 为textView
 			appInfo = UserAppInfos.get(position - 1);
 		} else {
 			// 系统应用
@@ -91,6 +93,7 @@ public class AppManagerAdapter extends BaseAdapter {
 		ViewHolder viewHolder = null;
 		// instanceof是一个二元操作符(==、>、<一类)，是Java的保留关键字。作用是判断左边对象是否为其右边类的实例
 		if (convertView != null & convertView instanceof LinearLayout) {
+			// View中的setTag(Onbect)表示给View添加一个格外的数据，然后用getTag()将这个数据取出来。
 			viewHolder = (ViewHolder) convertView.getTag();
 		} else {
 			viewHolder = new ViewHolder();
@@ -128,13 +131,12 @@ public class AppManagerAdapter extends BaseAdapter {
 			} else {
 				viewHolder.mAppOptionLL.setVisibility(View.GONE);
 			}
+			MyClickListener listener = new MyClickListener(appInfo);
+			viewHolder.mLuanchAppTV.setOnClickListener(listener);
+			viewHolder.mSettingAppTV.setOnClickListener(listener);
+			viewHolder.mShareAppTV.setOnClickListener(listener);
+			viewHolder.mUninstallTV.setOnClickListener(listener);
 		}
-		MyClickListener listener = new MyClickListener(appInfo);
-		viewHolder.mLuanchAppTV.setOnClickListener(listener);
-		viewHolder.mSettingAppTV.setOnClickListener(listener);
-		viewHolder.mShareAppTV.setOnClickListener(listener);
-		viewHolder.mUninstallTV.setOnClickListener(listener);
-
 		return convertView;
 	}
 
