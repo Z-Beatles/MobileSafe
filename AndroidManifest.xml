@@ -105,6 +105,15 @@
             android:name="cn.waynechu.mobilesafe.chapter04.AppManagerActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 病毒查杀 -->
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter05.VirusScanActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter05.VirusScanSpeedActivity"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- 手机卡更换的receiver， 并且优先级设置为最高 -->
         <receiver android:name="cn.waynechu.mobilesafe.chapter02.receiver.SmsLostFindReceiver" >

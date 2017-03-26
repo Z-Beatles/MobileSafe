@@ -15,7 +15,7 @@ public class AntiVirusDao {
 		SQLiteDatabase db = SQLiteDatabase.openDatabase(
 				"/data/data/cn.waynechu.mobilesafe/files/antivirus.db", null,
 				SQLiteDatabase.OPEN_READONLY);
-		Cursor cursor = db.rawQuery("selece desc from database where md5=?",
+		Cursor cursor = db.rawQuery("select desc from datable where md5=?",
 				new String[] { md5 });
 		if (cursor.moveToNext()) {
 			desc = cursor.getString(0);
