@@ -10,6 +10,7 @@ import cn.waynechu.mobilesafe.chapter02.receiver.MyDeviceAdminReceiver;
 import cn.waynechu.mobilesafe.chapter02.utils.MD5Utils;
 import cn.waynechu.mobilesafe.chapter03.SecurityPhoneActivity;
 import cn.waynechu.mobilesafe.chapter04.AppManagerActivity;
+import cn.waynechu.mobilesafe.chapter05.VirusScanActivity;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -73,7 +74,7 @@ public class HomeActivity extends Activity {
                 	startActivity(AppManagerActivity.class);
                     break;
                 case 3:// ≤°∂æ≤È…±
-
+                	startActivity(VirusScanActivity.class);
                     break;
                 case 4:// ªÏ¥Ê«Â¿Ì
 
