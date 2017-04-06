@@ -114,7 +114,15 @@
             android:name="cn.waynechu.mobilesafe.chapter05.VirusScanSpeedActivity"
             android:screenOrientation="portrait" >
         </activity>
-
+         <!-- 缓存清理 -->
+         <activity
+            android:name="cn.waynechu.mobilesafe.chapter06.CacheClearListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter06.CleanCacheActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 手机卡更换的receiver， 并且优先级设置为最高 -->
         <receiver android:name="cn.waynechu.mobilesafe.chapter02.receiver.SmsLostFindReceiver" >
             <intent-filter android:priority="2147483647" >

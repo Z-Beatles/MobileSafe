@@ -11,6 +11,7 @@ import cn.waynechu.mobilesafe.chapter02.utils.MD5Utils;
 import cn.waynechu.mobilesafe.chapter03.SecurityPhoneActivity;
 import cn.waynechu.mobilesafe.chapter04.AppManagerActivity;
 import cn.waynechu.mobilesafe.chapter05.VirusScanActivity;
+import cn.waynechu.mobilesafe.chapter06.CacheClearListActivity;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -76,8 +77,8 @@ public class HomeActivity extends Activity {
                 case 3:// 病毒查杀
                 	startActivity(VirusScanActivity.class);
                     break;
-                case 4:// 混存清理
-
+                case 4:// 缓存清理
+                	startActivity(CacheClearListActivity.class);
                     break;
                 case 5:// 进程管理
 
