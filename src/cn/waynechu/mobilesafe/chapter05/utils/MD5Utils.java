@@ -26,6 +26,7 @@ public class MD5Utils {
 			while ((len = fis.read(buffer)) != -1) {
 				digest.update(buffer, 0, len);
 			}
+			fis.close();
 			byte[] result = digest.digest();
 			StringBuilder sb = new StringBuilder();
 			for (byte b : result) {
@@ -37,6 +38,7 @@ public class MD5Utils {
 					sb.append(hex);
 				}
 			}
+			
 			return sb.toString();
 		} catch (Exception e) {
 			e.printStackTrace();

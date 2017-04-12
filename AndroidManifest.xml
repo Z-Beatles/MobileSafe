@@ -114,6 +114,35 @@
             android:name="cn.waynechu.mobilesafe.chapter05.VirusScanSpeedActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 缓存清理 -->
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter06.CacheClearListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter06.CleanCacheActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 进程管理 -->
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter07.ProcessManagerActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter07.ProcessManagerSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 注册GPSLocationService -->
+        <service
+            android:name="cn.waynechu.mobilesafe.chapter02.service.GPSLocationService"
+            android:persistent="true" >
+        </service>
+        <!-- 锁屏自动清理进程 -->
+        <service
+            android:name="cn.waynechu.mobilesafe.chapter07.service.AutoKillProcessService"
+            android:persistent="true" >
+        </service>
 
         <!-- 手机卡更换的receiver， 并且优先级设置为最高 -->
         <receiver android:name="cn.waynechu.mobilesafe.chapter02.receiver.SmsLostFindReceiver" >
@@ -121,11 +150,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-        <!-- 注册GPSLocationService -->
-        <service
-            android:name="cn.waynechu.mobilesafe.chapter02.service.GPSLocationService"
-            android:persistent="true" >
-        </service>
         <!-- 设备超级管理员广播接收者，引用XML策略声明 @xml/device_admin_sample -->
         <receiver
             android:name="cn.waynechu.mobilesafe.chapter02.receiver.MyDeviceAdminReceiver"
