@@ -20,7 +20,6 @@ import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * «Â¿Ìª∫¥Ê¬ﬂº≠
@@ -137,7 +136,7 @@ public class CleanCacheActivity extends Activity implements OnClickListener {
 					Message message = Message.obtain();
 					message.what = CLEANNING;
 					message.obj = memory;
-					mHandler.sendMessageDelayed(message, 2000);
+					mHandler.sendMessageDelayed(message, 200);
 				}
 			}
 		}.start();

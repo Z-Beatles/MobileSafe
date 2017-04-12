@@ -38,9 +38,9 @@ public class CacheClearListActivity extends Activity implements OnClickListener 
 	protected static final int SCANNING = 100;
 	protected static final int FINISH = 101;
 	private PackageManager pm;
-	/** 建议清理 */
+	/** 正在扫描的程序包 */
 	private TextView mRecommendTV;
-	/** 可清理 */
+	/** 已扫描到的缓存 */
 	private TextView mCanCleanTV;
 	private ListView mCacheLV;
 	private Button mCacheBtn;
@@ -54,6 +54,7 @@ public class CacheClearListActivity extends Activity implements OnClickListener 
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case SCANNING:
+				// 正在扫描
 				PackageInfo info = (PackageInfo) msg.obj;
 				mRecommendTV.setText("正在扫描：  " + info.packageName);
 				mCanCleanTV.setText("已扫描缓存：  "
@@ -61,11 +62,12 @@ public class CacheClearListActivity extends Activity implements OnClickListener 
 								cacheMemory));
 				mCacheInfos.clear();
 				mCacheInfos.addAll(cacheInfos);
-
+				// ListView刷新
 				adapter.notifyDataSetChanged();
 				mCacheLV.setSelection(mCacheInfos.size());
 				break;
 			case FINISH:
+				// 扫描完毕
 				animation.stop();
 				if (cacheMemory > 0) {
 					mCacheBtn.setEnabled(true);
@@ -103,7 +105,7 @@ public class CacheClearListActivity extends Activity implements OnClickListener 
 		mCacheBtn.setOnClickListener(this);
 		animation = (AnimationDrawable) findViewById(R.id.imgv_broom)
 				.getBackground();
-		// setOneShot()方法表示动画效果是否只执行一次
+		// setOneShot()方法表示动画效果是否只执行一次，这里为循环动画
 		animation.setOneShot(false);
 		animation.start();
 		adapter = new CacheCleanAdapter(this, mCacheInfos);
