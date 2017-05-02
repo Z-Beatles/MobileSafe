@@ -132,6 +132,46 @@
             android:name="cn.waynechu.mobilesafe.chapter07.ProcessManagerSettingActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 流量监控 -->
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter08.OperatorSetActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter08.TrafficMonitoringActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 高级工具 -->
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter09.AdvancedToolsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter09.AppLockActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter09.NumBelongtoActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter09.SMSBackupActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter09.SMSReducitionActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter09.EnterPswActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 设置中心 -->
+        <activity
+            android:name="cn.waynechu.mobilesafe.chapter10.SettingsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- 注册GPSLocationService -->
         <service
@@ -141,6 +181,16 @@
         <!-- 锁屏自动清理进程 -->
         <service
             android:name="cn.waynechu.mobilesafe.chapter07.service.AutoKillProcessService"
+            android:persistent="true" >
+        </service>
+        <!-- 流量监控的服务 -->
+        <service
+            android:name="cn.waynechu.mobilesafe.chapter08.service.TrafficMonitoringService"
+            android:persistent="true" >
+        </service>
+        <!-- 程序锁 -->
+        <service
+            android:name="cn.waynechu.mobilesafe.chapter09.service.AppLockService"
             android:persistent="true" >
         </service>
 
